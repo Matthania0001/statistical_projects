@@ -3,20 +3,20 @@ using XLSX
 using HypothesisTests
 
 # Définir une classe pour les tests de normalité
-struct NormalityTests
+struct DataSet
     file_path::String
     sheet_name::String
     df::DataFrame
 end
 
 # Méthodes associées à la classe
-function NormalityTests(file_path::String, sheet_name::String)
+function DataSet(file_path::String, sheet_name::String)
     # Charger les données depuis le fichier Excel
     df = DataFrame(XLSX.readtable(file_path, sheet_name))
-    return NormalityTests(file_path, sheet_name, df)
+    return DataSet(file_path, sheet_name, df)
 end
 
-function check_column_exists(nt::NormalityTests, column_name::String)
+function check_column_exists(nt::DataSet, column_name::String)
     # Vérifier si une colonne existe dans le DataFrame
     if !(column_name in names(nt.df))
         #println("La colonne '$column_name' n'existe pas dans le fichier Excel.")
@@ -27,7 +27,7 @@ function check_column_exists(nt::NormalityTests, column_name::String)
     end
 end
 
-function clean_column(nt::NormalityTests, column_name::String)
+function clean_column(nt::DataSet, column_name::String)
     # Supprimer les valeurs manquantes et convertir en Float64
     df = dropmissing(nt.df, column_name)
     if check_column_exists(nt, column_name) == false
@@ -37,14 +37,14 @@ function clean_column(nt::NormalityTests, column_name::String)
     end
 end
 
-function jarque_bera_test(nt::NormalityTests, column_name::String)
+function jarque_bera_test(nt::DataSet, column_name::String)
     # Effectuer le test de Jarque-Bera
     df_cleaned = clean_column(nt, column_name)
     jb_test = JarqueBeraTest(Float64.(df_cleaned[!, column_name]))
     println(jb_test)
 end
 
-function shapiro_wilk_test(nt::NormalityTests, column_name::String)
+function shapiro_wilk_test(nt::DataSet, column_name::String)
     df_cleaned = clean_column(nt, column_name)
     sw_test = ShapiroWilkTest(Float64.(df_cleaned[!, column_name]))
     println(sw_test)
@@ -54,8 +54,9 @@ end
 # --------------------------------------------------
 
 # Instancier l'objet NormalityTests
-nt = NormalityTests("../cleanedData/Data_wtout_na.xlsx", "Sheet1")
+nt = DataSet("../cleanedData/Data_wtout_na.xlsx", "Sheet1")
 
 # Effectuer les tests de normalité sur la colonne 'DAM'
-println(jarque_bera_test(nt, "DAM"))
-println(shapiro_wilk_test(nt, "DAM"))
+#println(jarque_bera_test(nt, "DAM"))
+#println(shapiro_wilk_test(nt, "DAM"))
+println(names(nt.df))
