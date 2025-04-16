@@ -1,7 +1,7 @@
 library(R6)
 library(readxl)
 library(dplyr)
-
+library(moments)
 statistiques <- R6Class(
   classname = "Statistiques",
   public = list(
@@ -46,7 +46,9 @@ statistiques <- R6Class(
         "q1" = round(quantile(col_data, 0.25, na.rm = TRUE), 2),
         "q3" = round(quantile(col_data, 0.75, na.rm = TRUE), 2),
         "iqr" = round(IQR(col_data, na.rm = TRUE), 2),
-        "variance" = round(var(col_data, na.rm = TRUE), 2)
+        "variance" = round(var(col_data, na.rm = TRUE), 2),
+        "skewness" = round(moments::skewness(col_data, na.rm = TRUE), 2),
+        "kurtosis" = round(moments::kurtosis(col_data, na.rm = TRUE), 2)
       )
       # Retour des résultats
       data.frame(
