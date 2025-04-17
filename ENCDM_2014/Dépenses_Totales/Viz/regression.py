@@ -16,9 +16,14 @@ class RegressionPlotly:
         self.df['prediction'] = self.model.predict(X)
 
     def plot(self):
+        list_of_figures = []
         for feature in self.feature_columns:
             fig = px.scatter(self.df, x=feature, y=self.target_column,
                              trendline='ols', title=f'{feature} vs {self.target_column}')
+            list_of_figures += [fig]
+        return list_of_figures
+    def show(self):
+        for fig in self.plot():
             fig.show()
+        
 
-# Exemple avec le jeu de données Iris
