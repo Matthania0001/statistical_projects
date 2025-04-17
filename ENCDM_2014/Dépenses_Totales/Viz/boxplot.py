@@ -1,7 +1,7 @@
 import plotly.graph_objects as go
 import pandas as pd
 
-class BoxPlotDAM:
+class BoxPlot:
     def __init__(self, data_path, sheet_name="Sheet1", column_name="DAM"):
         self.data_path = data_path
         self.sheet_name = sheet_name
@@ -37,7 +37,7 @@ class BoxPlotDAM:
         self.fig.show()
 
 # Créer l'objet BoxPlotDAM
-box_plot = BoxPlotDAM(data_path="../cleanedData/Data_wtout_na.xlsx")
+box_plot = BoxPlot(data_path="../cleanedData/Data_wtout_na.xlsx")
 
 # Créer le box plot avec des titres personnalisés
 box_plot.create_box_plot(title="Distribution de DAM", yaxis_title="Valeurs de DAM")
