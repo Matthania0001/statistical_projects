@@ -36,17 +36,17 @@ class BoxPlot:
     def show(self):
         self.fig.show()
 
-# Créer l'objet BoxPlotDAM
-box_plot = BoxPlot(data_path="../cleanedData/Data_wtout_na.xlsx")
+# # Créer l'objet BoxPlotDAM
+# box_plot = BoxPlot(data_path="../cleanedData/Data_wtout_na.xlsx")
 
-# Créer le box plot avec des titres personnalisés
-box_plot.create_box_plot(title="Distribution de DAM", yaxis_title="Valeurs de DAM")
+# # Créer le box plot avec des titres personnalisés
+# box_plot.create_box_plot(title="Distribution de DAM", yaxis_title="Valeurs de DAM")
 
-# Afficher le graphique
-box_plot.show()
+# # Afficher le graphique
+# box_plot.show()
 
-# Enregistrer le graphique au format HTML
-box_plot.save("box_plot_interactif.html", file_format="html")
+# # Enregistrer le graphique au format HTML
+# box_plot.save("box_plot_interactif.html", file_format="html")
 
-# Enregistrer le graphique au format PNG (nécessite l'installation de Kaleido)
-box_plot.save("box_plot_interactif.png", file_format="png")
+# # Enregistrer le graphique au format PNG (nécessite l'installation de Kaleido)
+# box_plot.save("box_plot_interactif.png", file_format="png")
