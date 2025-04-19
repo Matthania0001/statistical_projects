@@ -106,3 +106,103 @@ print(model.summary())
 ```
 
 Cette approche permet d’explorer systématiquement les déterminants de la DAM et de proposer des recommandations ciblées (ex : politiques publiques pour les ménages à faible DAM).
+-----------------------------------------------------------------------------------
+
+
+### **Projet Statistique : Analyse des Déterminants Socio-Économiques des Dépenses Annuelles des Ménages au Maroc**
+
+#### **1. Contexte et Objectifs**
+L'objectif principal de ce projet est d'analyser les déterminants socio-économiques des dépenses annuelles des ménages (DAM) au Maroc, en utilisant les données fournies. Les questions clés incluent :
+- Quels facteurs influencent le plus les dépenses des ménages ?
+- Existe-t-il des disparités régionales ou entre milieux urbains et ruraux ?
+- Comment le niveau d'éducation, la profession, ou la taille du ménage affectent-ils les dépenses ?
+
+#### **2. Description des Données**
+La base de données contient des informations sur :
+- **Variables démographiques** : Sexe, âge, état matrimonial, taille du ménage.
+- **Variables socio-économiques** : Niveau scolaire, profession, secteur d'activité, quintiles de revenu.
+- **Variables géographiques** : Région, milieu (urbain/rural).
+- **Variables de dépenses** : Dépenses annuelles (DAM) et leurs transformations (log, racine carrée, etc.).
+
+#### **3. Méthodologie**
+
+##### **Étape 1 : Nettoyage et Préparation des Données**
+- **Gestion des valeurs manquantes** : Identifier et traiter les NA.
+- **Création de variables** : 
+  - Catégoriser l'âge en groupes (jeunes, adultes, seniors).
+  - Simplifier les professions en catégories (cadres, ouvriers, etc.).
+- **Normalisation** : Utiliser `z_score_DAM` ou `log_DAM` pour réduire la skewness.
+
+##### **Étape 2 : Analyse Exploratoire (EDA)**
+- **Statistiques descriptives** : Moyenne, médiane, écart-type des DAM par région.
+- **Visualisations** :
+  - Boxplots des DAM par région ou quintile de revenu.
+  - Histogrammes des DAM transformées (log, racine carrée).
+  - Cartes thermiques des corrélations entre variables.
+
+##### **Étape 3 : Analyse Statistique**
+- **Tests d'hypothèses** :
+  - Test de Student ou ANOVA pour comparer les DAM entre milieux urbains et ruraux.
+  - Test de Kruskal-Wallis pour les comparaisons non paramétriques.
+- **Régression linéaire multiple** :
+  - **Variable dépendante** : `log_DAM` (pour normaliser la distribution).
+  - **Variables indépendantes** :
+    - Taille du ménage.
+    - Niveau scolaire.
+    - Profession.
+    - Région.
+    - Quintile de revenu.
+  - **Interprétation** : Identifier les coefficients significatifs (p-value < 0.05).
+
+##### **Étape 4 : Modélisation Avancée**
+- **Régression robuste** : Pour gérer les outliers.
+- **Analyse par clusters** : Segmenter les ménages en groupes homogènes (ex. : ménages aisés vs modestes).
+- **ACP (Analyse en Composantes Principales)** : Réduire la dimensionnalité des variables socio-économiques.
+
+##### **Étape 5 : Validation et Interprétation**
+- **Validation des modèles** : R² ajusté, AIC, BIC.
+- **Interprétation des résultats** : 
+  - Ex. : "Un niveau supérieur augmente les DAM de X%, toutes choses égales par ailleurs."
+
+#### **4. Résultats Attendus**
+- **Facteurs clés** : Identification des variables les plus influentes (ex. : niveau d'éducation, région).
+- **Disparités géographiques** : Comparaison entre Dakhla-Oued Ed Dahab et Souss-Massa.
+- **Recommandations** : Politiques ciblées pour les ménages vulnérables.
+
+#### **5. Outils Recommandés**
+- **Logiciels** : R (ggplot2, dplyr, caret), Python (pandas, scikit-learn), ou Excel pour des analyses simples.
+- **Visualisation** : Tableau ou Power BI pour des dashboards interactifs.
+
+#### **6. Exemple de Code R (Début de Projet)**
+```r
+# Chargement des données
+library(readxl)
+data <- read_excel("donnees_apres_transfo.xlsx")
+
+# EDA
+summary(data$DAM)
+hist(data$log_DAM, main = "Distribution des DAM (log)")
+
+# Régression linéaire
+model <- lm(log_DAM ~ Taille_ménage + Niveau_scolaire_agreg_CM + Région_12, data = data)
+summary(model)
+
+# Visualisation
+library(ggplot2)
+ggplot(data, aes(x = Quintiles, y = log_DAM)) + 
+  geom_boxplot() + 
+  theme_minimal()
+```
+
+#### **7. Perspectives**
+- **Enrichissement** : Croiser avec des données externes (PIB régional, taux de chômage).
+- **Machine Learning** : Prédire les DAM avec des algorithmes comme XGBoost.
+
+---
+
+### **Pourquoi ce Projet ?**
+- **Pertinence politique** : Aide à cibler les aides sociales.
+- **Rigueur statistique** : Combinaison de méthodes descriptives et inférentielles.
+- **Approche accessible** : Utilisation d'outils courants et interprétation claire.
+
+Ce projet offre une analyse complète, allant de l'exploration des données à la modélisation, avec des applications concrètes pour les décideurs politiques.
