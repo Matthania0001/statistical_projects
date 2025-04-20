@@ -1,0 +1,139 @@
+{
+    "analyse_depenses": {
+      "professions": [
+        {
+          "nom": "Manœuvres non agricoles, manutentionnaires et travailleurs des petits métiers",
+          "statistiques": {
+            "moyenne": 52678.11731652004,
+            "variance": 882134454.4514791,
+            "mediane": 46203.9,
+            "max": 324949.8,
+            "min": 9061.0,
+            "somme": 107779428.0296,
+            "nombre_valeurs": 2046,
+            "pourcentage": "12.81%",
+            "depenses_par_menage": 52678.11731652004
+          }
+        },
+        {
+          "nom": "Exploitants et ouvriers agricoles (y compris pêche, chasse et forêt)",
+          "statistiques": {
+            "moyenne": 58213.65644129978,
+            "variance": 1509465706.2582552,
+            "mediane": 48187.7,
+            "max": 454481.0,
+            "min": 6618.6,
+            "somme": 185119427.48333332,
+            "nombre_valeurs": 3180,
+            "pourcentage": "19.91%",
+            "depenses_par_menage": 58213.65644129978
+          }
+        },
+        {
+          "nom": "Artisans et ouvriers qualifies et conducteurs d'installations et de machines et ouvriers de l'assemblage",
+          "statistiques": {
+            "moyenne": 65465.99347454085,
+            "variance": 1649830578.4611638,
+            "mediane": 55489.3,
+            "max": 579337.6,
+            "min": 8274.8,
+            "somme": 206741607.3926,
+            "nombre_valeurs": 3158,
+            "pourcentage": "19.77%",
+            "depenses_par_menage": 65465.99347454085
+          }
+        },
+        {
+          "nom": "Cadres moyens et employés de bureau",
+          "statistiques": {
+            "moyenne": 98465.23601490949,
+            "variance": 4036463556.370748,
+            "mediane": 83233.0,
+            "max": 920709.0,
+            "min": 9923.6,
+            "somme": 154098094.36333334,
+            "nombre_valeurs": 1565,
+            "pourcentage": "9.80%",
+            "depenses_par_menage": 98465.23601490949
+          }
+        },
+        {
+          "nom": "Commerçants, intermédiaires commerciaux et financiers",
+          "statistiques": {
+            "moyenne": 81420.23187370396,
+            "variance": 3602018193.7914367,
+            "mediane": 64627.2,
+            "max": 559998.6,
+            "min": 10105.0,
+            "somme": 115698149.49253333,
+            "nombre_valeurs": 1421,
+            "pourcentage": "8.90%",
+            "depenses_par_menage": 81420.23187370396
+          }
+        },
+        {
+          "nom": "Inactif",
+          "statistiques": {
+            "moyenne": 80625.9597820045,
+            "variance": 3995686785.7225156,
+            "mediane": 63383.0,
+            "max": 948590.2999999999,
+            "min": 4286.0,
+            "somme": 322584465.0878,
+            "nombre_valeurs": 4001,
+            "pourcentage": "25.05%",
+            "depenses_par_menage": 80625.9597820045
+          }
+        },
+        {
+          "nom": "Directeurs et cadres de direction, membres des corps législatifs, cadres supérieurs et membres des professions libérales",
+          "statistiques": {
+            "moyenne": 206243.31743811502,
+            "variance": 22403956187.350895,
+            "mediane": 169859.8,
+            "max": 1224977.4,
+            "min": 12046.0,
+            "somme": 99203035.68773332,
+            "nombre_valeurs": 481,
+            "pourcentage": "3.01%",
+            "depenses_par_menage": 206243.31743811502
+          }
+        },
+        {
+          "nom": "Chômeur n'ayant jamais travaillé",
+          "statistiques": {
+            "moyenne": 61785.670720720715,
+            "variance": 3680554793.298617,
+            "mediane": 44103.29999999999,
+            "max": 402871.9333333333,
+            "min": 14524.0,
+            "somme": 4572139.633333333,
+            "nombre_valeurs": 74,
+            "pourcentage": "0.46%",
+            "depenses_par_menage": 61785.670720720715
+          }
+        },
+        {
+          "nom": "Non déclaré",
+          "statistiques": {
+            "moyenne": 69098.14545454545,
+            "variance": 4606894134.7642975,
+            "mediane": 53756.5,
+            "max": 464425.6,
+            "min": 10213.6,
+            "somme": 3040318.4,
+            "nombre_valeurs": 44,
+            "pourcentage": "0.28%",
+            "depenses_par_menage": 69098.14545454545
+          }
+        }
+      ],
+      "metadata": {
+        "unite_monetaire": "EUR",
+        "source": "Données DAM par profession",
+        "date_analyse": "2023-11-20",
+        "total_observations": 15970,
+        "note": "Les pourcentages représentent la part de chaque profession dans l'échantillon total"
+      }
+    }
+  }
