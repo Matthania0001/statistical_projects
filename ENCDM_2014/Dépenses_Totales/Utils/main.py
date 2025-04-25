@@ -6,13 +6,37 @@ from boxplot import BoxPlot
 from dashbord import create_px_dashboard
 import pandas as pd
 import plotly.express as px
+import numpy as np
 
-
-# a = Donnee("../cleanedData/Data_wtout_na.xlsx", ".xlsx")
-# a._load_data()
-# b = a.df
-# b["Profession_agreg_CM"] = b["Profession_agreg_CM"].fillna("Inactif")
-# liste = b["Profession_agreg_CM"].unique()
+a = Donnee("../cleanedData/Data_wtout_na.xlsx", ".xlsx")
+a._load_data()
+b = a.df
+b["Profession_agreg_CM"] = b["Profession_agreg_CM"].fillna("Inactif")
+liste = b["Profession_agreg_CM"].unique()
+couleurs = ['#636EFA', '#EF553B', '#00CC96', '#AB63FA', '#FFA15A', '#19D3F3', '#FF6692', '#B6E880', "#FF97FF", ]
+for i in range(len(liste)): 
+    l = [b["DAM"][j] for j in range(len(b["DAM"])) if b["Profession_agreg_CM"][j]== liste[i]]
+    dt = pd.DataFrame({'DAM': l})
+    fig = px.box(dt, y='DAM', title=f"{liste[i]}", notched=True)
+    minimum  = np.min(dt["DAM"])
+    maximum = np.max(dt["DAM"])
+    q1 = np.percentile(dt["DAM"], 25)
+    q3 = np.percentile(dt["DAM"], 75)
+    mediane = np.median(dt["DAM"])
+    IQR = q3 - q1
+    Borne_inf = q1 - 1.5 * IQR
+    Borne_sup = q3 + 1.5 * IQR
+    z = (maximum - minimum)/7
+    fig.add_annotation(x=-0.5, y=maximum, text=f"<b>Max: {maximum}</b>", showarrow=False, yshift=10),
+    fig.add_annotation(x=-0.5, y=maximum - z, text=f"<b>Borne sup: {Borne_sup}</b>", showarrow=False, yshift=10),
+    fig.add_annotation(x=-0.5, y=maximum - 2*z, text=f"<b>Q3: {q3}</b>", showarrow=False, yshift=10),
+    fig.add_annotation(x=-0.5, y=maximum - 3*z, text=f"<b>Médiane: {mediane}</b>", showarrow=False, yshift=-10),
+    fig.add_annotation(x=-0.5, y=maximum - 4*z, text=f"<b>Q1: {q1}</b>", showarrow=False, yshift=-10),
+    fig.add_annotation(x=-0.5, y=maximum - 5*z, text=f"<b>Borne inf: {Borne_inf}</b>", showarrow=False, yshift=-10),
+    fig.add_annotation(x=-0.5, y=maximum - 6*z, text=f"<b>Min: {minimum}</b>", showarrow=False, yshift=-10),
+    fig.add_annotation(x=-0.5, y=minimum, text=f"<b>IQR: {IQR}</b>", showarrow=False, yshift=-10),
+    fig.update_traces(marker_color=couleurs[i])
+    fig.show()
 # for i in range(len(liste)):
 #     q = liste[i]
 #     l = []
@@ -80,16 +104,16 @@ import plotly.express as px
 #     )
 #     d.afficher()
 # Données
-valeurs = [52678.11731652004, 58213.65644129978, 65465.99347454085, 98465.23601490949,  81420.23187370396, 80625.9597820045, 206243.31743811502,  61785.670720720715, 69098.14545454545]
-categories = ["Manœuvres non agricoles, manutentionnaires et  travailleurs des petits métiers",
-              "Exploitants et ouvriers agricoles (y compris pêche, chasse et forêt)", 
-              "Artisans et ouvriers qualifies et conducteurs d'installations et de machines et ouvriers  de l'assemblage", 
-              "Cadres moyens et employés de bureau", 
-              "Commerçants, intermédiaires commerciaux  et financiers", 
-              "Inactifs",
-              "Directeurs et cadres de direction, membres des corps législatifs,cadres supérieurs et membres des professions ", 
-              "Chômeur n'ayant jamais travaillés", 
-              "Non déclaré"]
+# valeurs = [52678.11731652004, 58213.65644129978, 65465.99347454085, 98465.23601490949,  81420.23187370396, 80625.9597820045, 206243.31743811502,  61785.670720720715, 69098.14545454545]
+# categories = ["Manœuvres non agricoles, manutentionnaires et  travailleurs des petits métiers",
+#               "Exploitants et ouvriers agricoles (y compris pêche, chasse et forêt)", 
+#               "Artisans et ouvriers qualifies et conducteurs d'installations et de machines et ouvriers  de l'assemblage", 
+#               "Cadres moyens et employés de bureau", 
+#               "Commerçants, intermédiaires commerciaux  et financiers", 
+#               "Inactifs",
+#               "Directeurs et cadres de direction, membres des corps législatifs,cadres supérieurs et membres des professions ", 
+#               "Chômeur n'ayant jamais travaillés", 
+#               "Non déclaré"]
 
 # Création du bar plot
 # fig = px.bar(
@@ -108,6 +132,6 @@ categories = ["Manœuvres non agricoles, manutentionnaires et  travailleurs des 
 
 # # Affichage
 # fig.show()
-l = [107779428.02,185119427.48,206741607.39,154098094.36,115698149.49,322584465.08,99203035.68,4572139.63,3040318.4]
-for i in l:
-    print(i/1198836665.5300002)
+# l = [107779428.02,185119427.48,206741607.39,154098094.36,115698149.49,322584465.08,99203035.68,4572139.63,3040318.4]
+# for i in l:
+#     print(i/1198836665.5300002)
